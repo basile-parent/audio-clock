@@ -1,0 +1,37 @@
+#clock-container {
+    font-size: 5rem;
+    display: inline-flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    time {
+        display: flex;
+        gap: 30px;
+        font-family: digital-x, digital, Courier New, Arial, sans-serif;
+        justify-content: center;
+        align-items: flex-end;
+
+        .hours {
+            color: var(--clock-highlight);
+        }
+
+        .seconds {
+            color: var(--text-downlight);
+            font-size: 3rem;
+            vertical-align: bottom;
+        }
+    }
+
+    .date {
+        font-size: 4rem;
+        margin: 0;
+        font-family: abduction, digital-x, digital, Courier New, Arial, sans-serif;
+        text-align: center;
+        background: -webkit-linear-gradient(47deg, rgb(157, 200, 255) 0%, rgb(103, 169, 255) 50%, rgb(249, 82, 255) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}

@@ -1,0 +1,19 @@
+html, body {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  height: 100vh;
+  width: 100%;
+  /* overflow: hidden; */
+  font-family: digital, Courier New, Arial, sans-serif;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#clock {
+  height: 80%;
+  width: 100%;
+  border: 3px solid red;
+} 

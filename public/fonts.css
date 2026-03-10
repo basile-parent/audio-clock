@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'digital';
+  src: url('fonts/font-digital/digital-7-webfont.woff2') format('woff2'),
+  url('fonts/font-digital/digital-7-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'digital-x';
+  src: url('fonts/font-digital/digitalix-webfont.woff2') format('woff2'),
+  url('fonts/font-digital/digitalix-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'abduction';
+  src: url('fonts/abduction/abduction2002-webfont.woff2') format('woff2'),
+  url('fonts/abduction/abduction2002-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
