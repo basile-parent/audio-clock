@@ -1,0 +1,68 @@
+#clock-container {
+    display: inline-flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    time {
+        font-family: digital-x, digital, Courier New, Arial, sans-serif;
+
+        .hours {
+            font-size: 5rem;
+            color: var(--clock-highlight);
+        }
+
+        .minutes {
+            font-size: 4rem;
+        }
+
+        .seconds {
+            color: var(--text-downlight);
+            font-size: 2.5rem;
+        }
+    }
+
+    .date {
+        font-size: 4rem;
+        font-family: abduction, digital-x, digital, Courier New, Arial, sans-serif;
+        background: linear-gradient(47deg, #9dc8ff 0%, #67a9ff 50%, #f952ff 100%);
+        background-size: 600% 600%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+
+        -webkit-animation: rotatingBg 30s ease infinite;
+        -moz-animation: rotatingBg 30s ease infinite;
+        animation: rotatingBg 30s ease infinite;
+    }
+}
+
+@-webkit-keyframes rotatingBg {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes rotatingBg {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

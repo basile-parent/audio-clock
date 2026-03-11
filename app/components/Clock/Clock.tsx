@@ -1,3 +1,4 @@
+'use client'
 import { useState, useEffect } from 'react';
 import './Clock.css';
 
@@ -33,16 +34,20 @@ const Clock = () => {
     return (
         <div id="clock-container">
             <div>
-                <time dateTime={time.toISOString()}>
+                <time dateTime={time.toISOString()} className="flex gap-8 items-end justify-center leading-none">
                     <span className='hours'>{hours.toString().padStart(2, '0')}</span>
                     <span className='minutes'>{minutes.toString().padStart(2, '0')}</span>
                     <span className='seconds'>{seconds.toString().padStart(2, '0')}</span>
                 </time>
-                <p className="date">{time.toLocaleDateString("fr-FR", {
-                    weekday: "short",
-                    month: "short",
-                    day: "numeric",
-                })}</p>
+                <p className="date m-0 text-center">
+                    {
+                        time.toLocaleDateString("fr-FR", {
+                            weekday: "short",
+                            month: "short",
+                            day: "numeric",
+                        })
+                    }
+                </p>
             </div>
         </div>
     );
