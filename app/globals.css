@@ -34,7 +34,7 @@ body {
 body {
   background: var(--background-primary);
   color: var(--text-primary);
-  font-family: digital-x, digital, 'Courier New', Courier, monospace, sans-serif;
+  font-family: sono, 'Courier New', Courier, monospace, sans-serif;
 }
 
 * {

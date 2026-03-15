@@ -1,31 +1,33 @@
 #clock-container {
+    --main-font-size: 5rem;
+
     display: inline-flex;
     height: 100%;
     width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    
     time {
         font-family: digital-x, digital, Courier New, Arial, sans-serif;
 
         .hours {
-            font-size: 5rem;
+            font-size: var(--main-font-size);
             color: var(--clock-highlight);
         }
 
         .minutes {
-            font-size: 4rem;
+            font-size: calc(var(--main-font-size) * 0.8);
         }
 
         .seconds {
             color: var(--text-downlight);
-            font-size: 2.5rem;
+            font-size: calc(var(--main-font-size) * 0.6);
         }
     }
 
     .date {
-        font-size: 4rem;
+        font-size: calc(var(--main-font-size) * 0.8);
         font-family: abduction, digital-x, digital, Courier New, Arial, sans-serif;
         background: linear-gradient(47deg, #9dc8ff 0%, #67a9ff 50%, #f952ff 100%);
         background-size: 600% 600%;

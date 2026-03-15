@@ -39,7 +39,7 @@ const Clock = () => {
                     <span className='minutes'>{minutes.toString().padStart(2, '0')}</span>
                     <span className='seconds'>{seconds.toString().padStart(2, '0')}</span>
                 </time>
-                <p className="date m-0 text-center">
+                <p className="date m-0 text-center leading-none">
                     {
                         time.toLocaleDateString("fr-FR", {
                             weekday: "short",

@@ -1,0 +1,20 @@
+#weather-container {
+    font-weight: bold;
+    font-size: 2rem;
+
+    table {
+        th, td {
+            /* border: 1px solid white; */
+        }
+
+        .first-col {
+            width: 200px;
+        }
+
+        &.work_hours {
+            th.hour {
+                width : calc(25% - 200px);
+            }
+        }
+    }
+}
