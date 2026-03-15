@@ -8,6 +8,8 @@
 
     --clock-highlight: #ffffb3;
     --neon-gradient: linear-gradient(47deg, #9dc8ff 0%, #67a9ff 50%, #f952ff 100%);
+    --rain-background: #8e8efd;
+    --snow-background: #fdcd8e;
 }
 
 @theme inline {
@@ -26,6 +28,7 @@
 
     --clock-highlight: #ffffb3;
     --neon-gradient: linear-gradient(47deg, #9dc8ff 0%, #67a9ff 50%, #f952ff 100%);
+    --rain-background: #8e8efd;
   }
 }
 

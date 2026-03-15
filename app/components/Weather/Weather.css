@@ -16,5 +16,14 @@
                 width : calc(25% - 200px);
             }
         }
+
+        .rain-badge {
+            background-color: var(--rain-background);
+            color: var(--text-contrast);
+        }
+        .snow-badge {
+            background-color: var(--snow-background);
+            color: var(--text-contrast);
+        }
     }
 }

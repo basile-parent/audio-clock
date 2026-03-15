@@ -3,6 +3,9 @@
 import { SingleWeatherData, WeatherData } from "@/app/lib/weather/WeatherApi";
 import { useMemo } from "react";
 import { Granularity } from "./Weather";
+import DropIcon from "@/app/assets/images/drop.svg"
+import SnowIcon from "@/app/assets/images/snow.svg"
+import Image from "next/image";
 
 interface WeatherRenderProps {
     weatherData: WeatherData | null
@@ -49,14 +52,26 @@ const WeatherRender = ({ weatherData, granularity }: WeatherRenderProps) => {
                                 <th className="first-col">{dayString}</th>
                                 {
                                     hourDataList.map((hourData) => (
-                                        <td className="">
+                                        <td className="relative">
                                             <span className="flex flex-col items-center gap-3">
-                                                <img src={`/weather/white/${hourData.icon}.png`} 
-                                                    alt="" 
+                                                <img src={`/weather/white/${hourData.icon}.png`}
+                                                    alt=""
                                                     className="w-25 inline-block flex-1" />
-                                                {hourData.description && 
+                                                {hourData.description &&
                                                     <p className="text-sm h-[45px]">{hourData.description}</p>
                                                 }
+                                                {!!hourData.rainRisk && (
+                                                    <span className="rain-badge absolute bottom-[50px] right-px text-lg rounded-xl leading-none p-[3px] pl-[8px] pr-[8px] shadow-lg">
+                                                        <Image src={DropIcon} alt="Risques de pluie" width="14" height="14" className="inline-block mr-1" />
+                                                        {hourData.rainRisk}%
+                                                    </span>
+                                                )}
+                                                {!!hourData.snowRisk && (
+                                                    <span className="snow-badge absolute bottom-[78px] right-px text-lg rounded-xl leading-none p-[3px] pl-[8px] pr-[8px] shadow-lg">
+                                                        <Image src={SnowIcon} alt="Risques de neige" width="16" height="16" className="inline-block mr-1" />
+                                                        {hourData.snowRisk}%
+                                                    </span>
+                                                )}
                                             </span>
                                         </td>
                                     ))
