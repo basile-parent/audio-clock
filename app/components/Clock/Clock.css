@@ -29,7 +29,7 @@
     .date {
         font-size: calc(var(--main-font-size) * 0.8);
         font-family: abduction, digital-x, digital, Courier New, Arial, sans-serif;
-        background: linear-gradient(47deg, #9dc8ff 0%, #67a9ff 50%, #f952ff 100%);
+        background: var(--neon-gradient);
         background-size: 600% 600%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

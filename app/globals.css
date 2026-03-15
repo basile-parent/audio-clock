@@ -4,8 +4,10 @@
     --background-primary: #272727;
     --text-primary: #e6e6e6;
     --text-downlight: #929292;
+    --text-contrast: #272727;
 
     --clock-highlight: #ffffb3;
+    --neon-gradient: linear-gradient(47deg, #9dc8ff 0%, #67a9ff 50%, #f952ff 100%);
 }
 
 @theme inline {
@@ -20,8 +22,10 @@
     --background-primary: #272727;
     --text-primary: #e6e6e6;
     --text-downlight: #929292;
+    --text-contrast: #272727;
 
     --clock-highlight: #ffffb3;
+    --neon-gradient: linear-gradient(47deg, #9dc8ff 0%, #67a9ff 50%, #f952ff 100%);
   }
 }
 
@@ -39,4 +43,9 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+.neon-gradient {
+  background: var(--neon-gradient);
+  color: var(--text-contrast);
 }

@@ -6,7 +6,6 @@ import { Granularity } from "./Weather";
 
 interface WeatherRenderProps {
     weatherData: WeatherData | null
-    onFetchData: () => void
     error: boolean
     granularity: Granularity
 }

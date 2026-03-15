@@ -1,10 +1,11 @@
-
 'use client'
 
 import { useCallback, useEffect, useState } from "react";
 import WeatherRender from "./WeatherRender";
 import { WeatherData } from "@/app/lib/weather/WeatherApi";
 import "./Weather.css";
+import RefreshIcon from "@/app/assets/images/refresh.svg"
+import Image from 'next/image'
 
 export type Granularity = "work_hours" | "every_2_hours" | "every_hour"
 const WORK_HOURS = [8, 12, 16, 20]
@@ -18,6 +19,8 @@ const Weather = () => {
 
 
     const fetchData = useCallback(() => {
+        setFullWeatherData(null)
+
         fetch("/api/weather")
             .then(r => r.json())
             .then(toWeatherDataFromApi)
@@ -57,9 +60,18 @@ const Weather = () => {
 
     return (
         <div id="weather-container" className="">
+            <div className="flex">
+                <span className="flex-1" aria-hidden></span>
+
+                <button className="neon-gradient rounded-full p-2.5 border-transparent text-center text-sm cursor-pointer"
+                    onClick={fetchData}
+                    aria-label="Rafraichir les données météo"
+                >
+                    <Image src={RefreshIcon} alt="" />
+                </button>
+            </div>
             <WeatherRender
                 weatherData={filteredWeatherData}
-                onFetchData={fetchData}
                 error={isError}
                 granularity={granularity}
             />
