@@ -40,7 +40,7 @@ const WeatherRender = ({ weatherData, granularity }: WeatherRenderProps) => {
                         </th>
                         {
                             hours.map((hour: number) => (
-                                <th className="hour">{hour}h</th>
+                                <th className="hour" key={hour}>{hour}h</th>
                             ))
                         }
                     </tr>
@@ -52,7 +52,7 @@ const WeatherRender = ({ weatherData, granularity }: WeatherRenderProps) => {
                                 <th className="first-col">{dayString}</th>
                                 {
                                     hourDataList.map((hourData) => (
-                                        <td className="relative">
+                                        <td className="relative" key={hourData.dateTime.toISOString()}>
                                             <span className="flex flex-col items-center gap-3">
                                                 <img src={`/weather/white/${hourData.icon}.png`}
                                                     alt=""

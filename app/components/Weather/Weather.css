@@ -2,6 +2,10 @@
     font-weight: bold;
     font-size: 2rem;
 
+    .selected {
+        font-weight: bold;
+    }
+
     table {
         th, td {
             /* border: 1px solid white; */

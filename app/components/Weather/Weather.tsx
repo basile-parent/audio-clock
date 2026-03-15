@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import WeatherRender from "./WeatherRender";
 import { WeatherData } from "@/app/lib/weather/WeatherApi";
 import "./Weather.css";
@@ -58,9 +58,32 @@ const Weather = () => {
         }
     }, [granularity, fullWeatherData])
 
+    const changeGranularity = (event: ChangeEvent<HTMLInputElement>) => {
+        setGranularity(event.target.value as Granularity)
+    }
+
     return (
         <div id="weather-container" className="">
             <div className="flex">
+                <fieldset className="inline-flex flex-row h-[35px] ml-4">
+                    <legend className="sr-only">Granularité des informations météo</legend>
+
+                    <label htmlFor="radio_work_hours" className={`${granularity === "work_hours" ? "selected" : ""} inline-flex rounded-md rounded-r-none border border-slate-400 bg-transparent px-3.5 py-2.5 text-center text-sm font-medium leading-none transition-all duration-300 ease-in`}>
+                        Heures du jour
+                    </label>
+                    <input type="radio" id="radio_work_hours" value="work_hours" checked={granularity === "work_hours"} onChange={changeGranularity} className="sr-only" />
+
+                    <label htmlFor="radio_every_2_hours" className={`${granularity === "every_2_hours" ? "selected" : ""} inline-flex rounded-none border border-l-0 border-slate-400 bg-transparent px-3.5 py-2.5 text-center text-sm font-medium leading-none transition-all duration-300 ease-in`}>
+                        2 heures
+                    </label>
+                    <input type="radio" id="radio_every_hour" value="every_hour" checked={granularity === "every_hour"} onChange={changeGranularity} className="sr-only" />
+
+                    <label htmlFor="radio_every_hour" className={`${granularity === "every_hour" ? "selected" : ""} inline-flex rounded-md rounded-l-none border border-l-0 border-slate-400 bg-transparent px-3.5 py-2.5 text-center text-sm font-medium leading-none transition-all duration-300 ease-in`}>
+                        1 heure
+                    </label>
+                    <input type="radio" id="radio_every_2_hours" value="every_2_hours" checked={granularity === "every_2_hours"} onChange={changeGranularity} className="sr-only" />
+                </fieldset>
+
                 <span className="flex-1" aria-hidden></span>
 
                 <button className="neon-gradient rounded-full p-2.5 border-transparent text-center text-sm cursor-pointer"
