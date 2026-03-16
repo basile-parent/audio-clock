@@ -1,10 +1,9 @@
 'use client'
 
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import WeatherRender from "./WeatherRender";
 import { WeatherData } from "@/app/lib/weather/WeatherApi";
 import "./Weather.css";
-import RefreshIcon from "@/app/assets/images/refresh.svg"
 import LoadingIcon from "@/app/assets/images/loading.gif"
 import Image from 'next/image'
 import WeatherActions from "./WeatherActions";
@@ -17,13 +16,28 @@ const Weather = () => {
 
     const [granularity, setGranularity] = useState<Granularity>("work_hours")
 
+    const fetchIntervalIdRef = useRef<NodeJS.Timeout | null>(null)
+
+    const initFetchInterval = useCallback((): void => {
+        if (fetchIntervalIdRef.current) {
+            clearInterval(fetchIntervalIdRef.current)
+        }
+
+        fetchIntervalIdRef.current = setInterval(() => {
+            fetchData()
+        }, 1000 * 60 * 20) // Every 20 minutes
+    }, [fetchIntervalIdRef.current])
+
     const fetchData = useCallback(() => {
+        console.log("Fetch weather data", new Date().toLocaleString())
+
         setFullWeatherData(null)
 
         fetch("/api/weather")
             .then(r => r.json())
             .then(toWeatherDataFromApi)
             .then(setFullWeatherData)
+            .then(initFetchInterval)
             .catch((e) => {
                 console.group("Error while fetching weather data")
                 console.error(e)
@@ -31,12 +45,19 @@ const Weather = () => {
 
                 setIsError(true)
             })
-    }, []);
+    }, [initFetchInterval]);
 
     useEffect(() => {
         fetchData()
-    }, [])
 
+        initFetchInterval()
+
+        return () => {
+            if (fetchIntervalIdRef.current) {
+                clearInterval(fetchIntervalIdRef.current)
+            }
+        }
+    }, [])
 
     if (!fullWeatherData) {
         return (

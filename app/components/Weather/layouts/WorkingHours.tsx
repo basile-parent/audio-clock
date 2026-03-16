@@ -67,7 +67,7 @@ const WorkingHours = ({ weatherData }: WorkingHoursProps) => {
                                 <th className="first-col text-xl">{dayString}</th>
                                 {
                                     hourDataList.map((hourData) => (
-                                        <td className="relative" key={hourData.dateTime.toISOString()}>
+                                        <td className={`relative ${isPast(hourData.dateTime) ? "opacity-25" : "" }`} key={hourData.dateTime.toISOString()}>
                                             <span className="flex flex-col items-center gap-3">
                                                 <img src={`/weather/white/${hourData.icon}.png`}
                                                     alt=""
@@ -101,5 +101,7 @@ const WorkingHours = ({ weatherData }: WorkingHoursProps) => {
         </>
     );
 }
+
+const isPast = (date: Date): boolean => new Date().getTime() > date.getTime()
 
 export default WorkingHours;
