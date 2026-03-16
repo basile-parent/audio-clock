@@ -36,6 +36,10 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+
+	width: 1024px;
+	height: 600px;
+	overflow: hidden;
 }
 
 body {
@@ -43,6 +47,7 @@ body {
 	color: var(--text-primary);
 	font-family: sono, 'Courier New', Courier, monospace, sans-serif;
 }
+
 
 * {
 	box-sizing: border-box;
@@ -58,6 +63,26 @@ body {
 	color: var(--text-contrast);
 }
 
+.dev {
+	body {
+		border: 1px solid white;
+	}
+
+	#clock {
+		border: 1px dashed red;
+		background-color: rgba(255, 138, 138, .2);
+	}
+
+	#weather {
+		border: 1px dashed rgb(138, 255, 138);
+		background-color: rgba(138, 255, 138, .2);
+	}
+
+	#actions {
+		border: 1px dashed yellow;
+		background-color: rgba(255, 255, 138, .2);
+	}
+}
 
 /*
 	Improved screen reader only CSS class

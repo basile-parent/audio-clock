@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" className={ process.env.NODE_ENV=== "development" ? "dev" : ""}>
       <head>
         <link rel="stylesheet" href="fonts.css" />
       </head>

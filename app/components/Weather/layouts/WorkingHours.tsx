@@ -55,7 +55,7 @@ const WorkingHours = ({ weatherData }: WorkingHoursProps) => {
                         </th>
                         {
                             hours.map((hour: number) => (
-                                <th className="hour" key={hour}>{hour}h</th>
+                                <th className="hour text-xl" key={hour}>{hour}h</th>
                             ))
                         }
                     </tr>
@@ -64,26 +64,28 @@ const WorkingHours = ({ weatherData }: WorkingHoursProps) => {
                     {
                         Object.entries(weatherDataPerDay).map(([dayString, hourDataList]) => (
                             <tr key={dayString} className="">
-                                <th className="first-col">{dayString}</th>
+                                <th className="first-col text-xl">{dayString}</th>
                                 {
                                     hourDataList.map((hourData) => (
                                         <td className="relative" key={hourData.dateTime.toISOString()}>
                                             <span className="flex flex-col items-center gap-3">
                                                 <img src={`/weather/white/${hourData.icon}.png`}
                                                     alt=""
-                                                    className="w-25 inline-block flex-1" />
+                                                    className="h-[65px] w-[65px] inline-block flex-1" />
+
                                                 {hourData.description &&
-                                                    <p className="text-sm h-[45px]">{hourData.description}</p>
+                                                    <p className="text-sm h-[45px] mt-[-15px]">{hourData.description}</p>
                                                 }
+
                                                 {!!hourData.rainRisk && (
-                                                    <span className="rain-badge absolute bottom-[50px] right-px text-lg rounded-xl leading-none p-[3px] pl-[8px] pr-[8px] shadow-lg">
-                                                        <Image src={DropIcon} alt="Risques de pluie" width="14" height="14" className="inline-block mr-1" />
+                                                    <span className="rain-badge absolute bottom-[50px] right-px text-base rounded-xl leading-none p-[3px] pl-[8px] pr-[8px] shadow-lg">
+                                                        <Image src={DropIcon} alt="Risques de pluie" width="12" height="12" className="inline-block mr-1" />
                                                         {hourData.rainRisk}%
                                                     </span>
                                                 )}
                                                 {!!hourData.snowRisk && (
-                                                    <span className="snow-badge absolute bottom-[78px] right-px text-lg rounded-xl leading-none p-[3px] pl-[8px] pr-[8px] shadow-lg">
-                                                        <Image src={SnowIcon} alt="Risques de neige" width="16" height="16" className="inline-block mr-1" />
+                                                    <span className="snow-badge absolute bottom-[78px] right-px text-base rounded-xl leading-none p-[3px] pl-[8px] pr-[8px] shadow-lg">
+                                                        <Image src={SnowIcon} alt="Risques de neige" width="14" height="14" className="inline-block mr-1" />
                                                         {hourData.snowRisk}%
                                                     </span>
                                                 )}

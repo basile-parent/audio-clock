@@ -7,6 +7,7 @@ import "./Weather.css";
 import RefreshIcon from "@/app/assets/images/refresh.svg"
 import LoadingIcon from "@/app/assets/images/loading.gif"
 import Image from 'next/image'
+import WeatherActions from "./WeatherActions";
 
 export type Granularity = "work_hours" | "every_2_hours" | "every_hour"
 
@@ -36,9 +37,6 @@ const Weather = () => {
         fetchData()
     }, [])
 
-    const changeGranularity = (event: ChangeEvent<HTMLInputElement>) => {
-        setGranularity(event.target.value as Granularity)
-    }
 
     if (!fullWeatherData) {
         return (
@@ -49,41 +47,21 @@ const Weather = () => {
     }
 
     return (
-        <div id="weather-container" className="">
-            <div className="flex">
-                <fieldset className="inline-flex flex-row h-[35px] ml-4">
-                    <legend className="sr-only">Granularité des informations météo</legend>
-
-                    <label htmlFor="radio_work_hours" className={`${granularity === "work_hours" ? "selected" : ""} inline-flex rounded-md rounded-r-none border border-slate-400 bg-transparent px-3.5 py-2.5 text-center text-sm font-medium leading-none transition-all duration-300 ease-in`}>
-                        Heures du jour
-                    </label>
-                    <input type="radio" id="radio_work_hours" value="work_hours" checked={granularity === "work_hours"} onChange={changeGranularity} className="sr-only" />
-
-                    <label htmlFor="radio_every_2_hours" className={`${granularity === "every_2_hours" ? "selected" : ""} inline-flex rounded-none border border-l-0 border-slate-400 bg-transparent px-3.5 py-2.5 text-center text-sm font-medium leading-none transition-all duration-300 ease-in`}>
-                        2 heures
-                    </label>
-                    <input type="radio" id="radio_every_hour" value="every_hour" checked={granularity === "every_hour"} onChange={changeGranularity} className="sr-only" />
-
-                    <label htmlFor="radio_every_hour" className={`${granularity === "every_hour" ? "selected" : ""} inline-flex rounded-md rounded-l-none border border-l-0 border-slate-400 bg-transparent px-3.5 py-2.5 text-center text-sm font-medium leading-none transition-all duration-300 ease-in`}>
-                        1 heure
-                    </label>
-                    <input type="radio" id="radio_every_2_hours" value="every_2_hours" checked={granularity === "every_2_hours"} onChange={changeGranularity} className="sr-only" />
-                </fieldset>
-
-                <span className="flex-1" aria-hidden></span>
-
-                <button className="neon-gradient rounded-full p-2.5 border-transparent text-center text-sm cursor-pointer"
-                    onClick={fetchData}
-                    aria-label="Rafraichir les données météo"
-                >
-                    <Image src={RefreshIcon} alt="" />
-                </button>
+        <div id="weather-container" className="h-full flex">
+            <div className="w-[120px] h-full flex items-center justify-center">
+                <WeatherActions
+                    granularity={granularity}
+                    onChangeGranularity={setGranularity}
+                    onFetchData={fetchData}
+                />
             </div>
-            <WeatherRender
-                weatherData={fullWeatherData}
-                error={isError}
-                granularity={granularity}
-            />
+            <div className="flex-1">
+                <WeatherRender
+                    weatherData={fullWeatherData}
+                    error={isError}
+                    granularity={granularity}
+                />
+            </div>
         </div>
     );
 }
