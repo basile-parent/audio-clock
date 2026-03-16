@@ -25,6 +25,7 @@ export type WeatherData = {
     city: string;
     region?: string;
     country?: string;
+    fetchDate: Date;
     weather: SingleWeatherData[];
 };
 

@@ -37,6 +37,18 @@ const WeatherRender = ({ weatherData, granularity }: WeatherRenderProps) => {
                     <tr className="">
                         <th className="first-col text-sm opacity-75 italic">
                             {weatherData?.city}
+                            <span className="sr-only">
+                                Date de dernière récupération des données météorologiques
+                            </span>
+                            <span className="block text-xs">
+                                Données:&nbsp;
+                                {weatherData?.fetchDate.toLocaleDateString("fr-FR", {
+                                    month: "numeric",
+                                    day: "numeric",
+                                    hour: "numeric",
+                                    minute: "numeric"
+                                })}
+                            </span>
                         </th>
                         {
                             hours.map((hour: number) => (

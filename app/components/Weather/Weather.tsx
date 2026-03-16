@@ -104,6 +104,7 @@ const Weather = () => {
 
 const toWeatherDataFromApi = (apiData: WeatherData): WeatherData => ({
     ...apiData,
+    fetchDate: new Date(apiData.fetchDate),
     weather: apiData.weather.map((hourData) => ({
         ...hourData,
         dateTime: new Date(hourData.dateTime),

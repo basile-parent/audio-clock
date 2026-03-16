@@ -42,6 +42,7 @@ class RestWeatherApi implements WeatherApi {
                     city: response.location.name,
                     region: response.location.region,
                     country: response.location.country,
+                    fetchDate: new Date(),
                     weather
                 }
                 return weatherData

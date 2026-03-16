@@ -32,6 +32,15 @@ describe('RestWeatherApi tests', () => {
         expect(weatherData.country).toEqual("France")
     })
 
+    it('should set the last fetch date (current date)', async () => {
+        // Given (nothing)
+        // When
+        const weatherData = await weatherApi.getWeatherByCity("Lille")
+
+        // Then
+        expect(weatherData.fetchDate.toLocaleDateString()).toEqual(new Date().toLocaleDateString())
+    })
+
     it('should set the correct date for the first hour data', async () => {
         // Given (nothing)
         // When
@@ -52,7 +61,7 @@ describe('RestWeatherApi tests', () => {
 
         // Then
         expect(weatherData.weather).toBeDefined()
-        expect(weatherData.weather.length).toEqual(48) // One data for each hour
+        expect(weatherData.weather.length).toEqual(47) // One data for each hour - minus last day at midnight
 
         expect(weatherData.weather[0].dateTime.toISOString()).toEqual("2026-03-15T00:00:00.000Z")
         expect(weatherData.weather[1].dateTime.toISOString()).toEqual("2026-03-15T01:00:00.000Z")
