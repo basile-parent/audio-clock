@@ -77,6 +77,8 @@ const WorkingHours = ({ weatherData }: WorkingHoursProps) => {
                                                     <p className="text-sm h-[45px] mt-[-15px]">{hourData.description}</p>
                                                 }
 
+                                                <p className="temperature absolute top-[-10px] right-px text-base">{ hourData.temp }°</p>
+
                                                 {!!hourData.rainRisk && (
                                                     <span className="rain-badge absolute bottom-[50px] right-px text-base rounded-xl leading-none p-[3px] pl-[8px] pr-[8px] shadow-lg">
                                                         <Image src={DropIcon} alt="Risques de pluie" width="12" height="12" className="inline-block mr-1" />

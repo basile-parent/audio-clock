@@ -10,6 +10,7 @@
 	--neon-gradient: linear-gradient(47deg, #9dc8ff 0%, #67a9ff 50%, #f952ff 100%);
 	--rain-background: #8e8efd;
 	--snow-background: #fdcd8e;
+	--temperature-color: #fdcd8e;
 }
 
 @theme inline {
@@ -25,10 +26,6 @@
 		--text-primary: #e6e6e6;
 		--text-downlight: #929292;
 		--text-contrast: #272727;
-
-		--clock-highlight: #ffffb3;
-		--neon-gradient: linear-gradient(47deg, #9dc8ff 0%, #67a9ff 50%, #f952ff 100%);
-		--rain-background: #8e8efd;
 	}
 }
 

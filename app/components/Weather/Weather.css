@@ -7,7 +7,9 @@
     }
 
     table {
-        th, td {
+
+        th,
+        td {
             /* border: 1px solid white; */
         }
 
@@ -17,7 +19,7 @@
 
         &.work_hours {
             th.hour {
-                width : calc(25% - 200px);
+                width: calc(25% - 200px);
             }
         }
 
@@ -25,9 +27,14 @@
             background-color: var(--rain-background);
             color: var(--text-contrast);
         }
+
         .snow-badge {
             background-color: var(--snow-background);
             color: var(--text-contrast);
+        }
+
+        .temperature {
+            color: var(--temperature-color);
         }
     }
 }
