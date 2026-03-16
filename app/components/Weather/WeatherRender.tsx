@@ -3,12 +3,10 @@
 import { SingleWeatherData, WeatherData } from "@/app/lib/weather/WeatherApi";
 import { useMemo } from "react";
 import { Granularity } from "./Weather";
-import DropIcon from "@/app/assets/images/drop.svg"
-import SnowIcon from "@/app/assets/images/snow.svg"
-import Image from "next/image";
+import WorkingHours from "./layouts/WorkingHours";
 
 interface WeatherRenderProps {
-    weatherData: WeatherData | null
+    weatherData: WeatherData
     error: boolean
     granularity: Granularity
 }
@@ -29,72 +27,12 @@ const WeatherRender = ({ weatherData, granularity }: WeatherRenderProps) => {
         [weatherData])
 
     const hours = Object.keys(weatherDataPerDay).length ? Object.values(weatherDataPerDay)[0].map(hourData => hourData.dateTime.getHours()) : []
-
+    
     return (
         <>
-            <table className={`w-full table-fixed text-center ${granularity}`}>
-                <thead>
-                    <tr className="">
-                        <th className="first-col text-sm opacity-75 italic">
-                            {weatherData?.city}
-                            <span className="sr-only">
-                                Date de dernière récupération des données météorologiques
-                            </span>
-                            <span className="block text-xs">
-                                Données:&nbsp;
-                                {weatherData?.fetchDate.toLocaleDateString("fr-FR", {
-                                    month: "numeric",
-                                    day: "numeric",
-                                    hour: "numeric",
-                                    minute: "numeric"
-                                })}
-                            </span>
-                        </th>
-                        {
-                            hours.map((hour: number) => (
-                                <th className="hour" key={hour}>{hour}h</th>
-                            ))
-                        }
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        Object.entries(weatherDataPerDay).map(([dayString, hourDataList]) => (
-                            <tr key={dayString} className="">
-                                <th className="first-col">{dayString}</th>
-                                {
-                                    hourDataList.map((hourData) => (
-                                        <td className="relative" key={hourData.dateTime.toISOString()}>
-                                            <span className="flex flex-col items-center gap-3">
-                                                <img src={`/weather/white/${hourData.icon}.png`}
-                                                    alt=""
-                                                    className="w-25 inline-block flex-1" />
-                                                {hourData.description &&
-                                                    <p className="text-sm h-[45px]">{hourData.description}</p>
-                                                }
-                                                {!!hourData.rainRisk && (
-                                                    <span className="rain-badge absolute bottom-[50px] right-px text-lg rounded-xl leading-none p-[3px] pl-[8px] pr-[8px] shadow-lg">
-                                                        <Image src={DropIcon} alt="Risques de pluie" width="14" height="14" className="inline-block mr-1" />
-                                                        {hourData.rainRisk}%
-                                                    </span>
-                                                )}
-                                                {!!hourData.snowRisk && (
-                                                    <span className="snow-badge absolute bottom-[78px] right-px text-lg rounded-xl leading-none p-[3px] pl-[8px] pr-[8px] shadow-lg">
-                                                        <Image src={SnowIcon} alt="Risques de neige" width="16" height="16" className="inline-block mr-1" />
-                                                        {hourData.snowRisk}%
-                                                    </span>
-                                                )}
-                                            </span>
-                                        </td>
-                                    ))
-                                }
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+            { granularity === "work_hours" && <WorkingHours weatherData={weatherData} /> }
         </>
-    );
+    )
 };
 
 export default WeatherRender;

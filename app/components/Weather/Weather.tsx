@@ -5,18 +5,16 @@ import WeatherRender from "./WeatherRender";
 import { WeatherData } from "@/app/lib/weather/WeatherApi";
 import "./Weather.css";
 import RefreshIcon from "@/app/assets/images/refresh.svg"
+import LoadingIcon from "@/app/assets/images/loading.gif"
 import Image from 'next/image'
 
 export type Granularity = "work_hours" | "every_2_hours" | "every_hour"
-const WORK_HOURS = [8, 12, 16, 20]
 
 const Weather = () => {
     const [fullWeatherData, setFullWeatherData] = useState<WeatherData | null>(null);
     const [isError, setIsError] = useState<boolean>(false)
 
     const [granularity, setGranularity] = useState<Granularity>("work_hours")
-    const [filteredWeatherData, setFilteredWeatherData] = useState<WeatherData | null>(null);
-
 
     const fetchData = useCallback(() => {
         setFullWeatherData(null)
@@ -38,28 +36,16 @@ const Weather = () => {
         fetchData()
     }, [])
 
-    useEffect(() => {
-        if (!fullWeatherData) {
-            setFilteredWeatherData(null)
-            return;
-        }
-        if (granularity === "work_hours") {
-            setFilteredWeatherData({
-                ...fullWeatherData,
-                weather: fullWeatherData.weather.filter(hourData => WORK_HOURS.includes(hourData.dateTime.getHours()))
-            })
-        } else if (granularity === "every_2_hours") {
-            setFilteredWeatherData({
-                ...fullWeatherData,
-                weather: fullWeatherData.weather.filter(hourData => hourData.dateTime.getHours() % 2)
-            })
-        } else {
-            setFilteredWeatherData(fullWeatherData)
-        }
-    }, [granularity, fullWeatherData])
-
     const changeGranularity = (event: ChangeEvent<HTMLInputElement>) => {
         setGranularity(event.target.value as Granularity)
+    }
+
+    if (!fullWeatherData) {
+        return (
+            <div className="flex items-center justify-center w-full h-full">
+                <Image src={LoadingIcon} alt="Chargement en cours" className="max-h-[200px] max-w-[200px]" />
+            </div>
+        )
     }
 
     return (
@@ -94,7 +80,7 @@ const Weather = () => {
                 </button>
             </div>
             <WeatherRender
-                weatherData={filteredWeatherData}
+                weatherData={fullWeatherData}
                 error={isError}
                 granularity={granularity}
             />
