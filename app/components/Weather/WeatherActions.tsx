@@ -2,6 +2,7 @@ import RefreshIcon from "@/app/assets/images/refresh.svg"
 import Image from 'next/image'
 import { Granularity } from "./Weather"
 import { ChangeEvent, useCallback, LabelHTMLAttributes } from "react"
+import RoundButton from "@/app/design-system/RoundButton"
 
 interface WeatherActionsProps {
     granularity: Granularity
@@ -16,12 +17,12 @@ const WeatherActions = ({ onFetchData, granularity, onChangeGranularity }: Weath
     return (
         <div className="flex flex-col items-center justify-center">
 
-            <button className="neon-gradient rounded-full p-2.5 border-transparent text-center text-sm cursor-pointer"
+            <RoundButton className="neon-gradient text-sm"
                 onClick={onFetchData}
                 aria-label="Rafraichir les données météo"
             >
                 <Image src={RefreshIcon} alt="" />
-            </button>
+            </RoundButton>
 
             <fieldset className="m-4">
                 <legend className="sr-only">Granularité des informations météo</legend>

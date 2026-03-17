@@ -1,3 +1,4 @@
+import Actions from "./components/Actions/Actions";
 import Clock from "./components/Clock/Clock";
 import Weather from "./components/Weather/Weather";
 
@@ -13,7 +14,7 @@ export default function Home() {
         </section>
       </div>
       <section id="actions" className="h-full w-[120px]">
-
+        <Actions />
       </section>
     </main>
   );

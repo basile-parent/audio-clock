@@ -1,0 +1,14 @@
+#actions-container {
+    .switch {
+        .background {
+            box-shadow: 2px 2px 2px #444;
+            background-color: var(--text-downlight);
+            border: 2px solid var(--text-contrast);
+        }
+
+        input:checked+.background {
+            background-color: blue;
+            border: 2px solid darkblue;
+        }
+    }
+}

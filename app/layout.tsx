@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { DevContextProvider } from "./context/devContext";
 
 export const metadata: Metadata = {
   title: "Réveil + météo + musique",
@@ -12,12 +13,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={ process.env.NODE_ENV=== "development" ? "dev" : ""}>
+    <html lang="fr">
       <head>
         <link rel="stylesheet" href="fonts.css" />
       </head>
       <body>
-        {children}
+        <DevContextProvider>
+          {children}
+        </DevContextProvider>
       </body>
     </html>
   );
