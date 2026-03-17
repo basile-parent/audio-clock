@@ -3,7 +3,7 @@
 :root {
 	--background-primary: #272727;
 	--text-primary: #e6e6e6;
-	--text-downlight: #929292;
+	--text-downlight: #8f8f8f;
 	--text-contrast: #272727;
 
 	--clock-highlight: #ffffb3;
@@ -11,6 +11,7 @@
 	--rain-background: #8e8efd;
 	--snow-background: #fdcd8e;
 	--temperature-color: #fdcd8e;
+	--rain-line: #3f3fd8;
 }
 
 @theme inline {

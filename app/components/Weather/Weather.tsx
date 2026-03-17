@@ -72,8 +72,8 @@ const Weather = () => {
     }
 
     return (
-        <div id="weather-container" className="h-full w-full flex">
-            <div className="w-[120px] h-full flex items-center justify-center">
+        <div id="weather-container" className="h-full w-full flex gap-[5px]">
+            <div className="w-[90px] h-full flex items-center justify-center">
                 <WeatherActions
                     granularity={granularity}
                     onChangeGranularity={updateGranularity}

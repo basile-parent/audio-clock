@@ -1,6 +1,3 @@
 #hour-chart {
     
-    .recharts-bar-rectangle path {
-        fill: var(--temperature-color);
-    }
 }
