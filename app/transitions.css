@@ -1,0 +1,51 @@
+@view-transition {
+    navigation: auto;
+}
+
+/* Les deux couches existent pendant la transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 300ms;
+    animation-timing-function: ease;
+}
+
+/* L'ancienne page reste fixe derrière */
+::view-transition-old(root) {
+    animation-name: none;
+}
+
+/* Navigation vers l'avant :
+   la nouvelle page arrive de droite */
+html:active-view-transition-type(forward)::view-transition-new(root) {
+    animation-name: slide-in-from-right;
+}
+
+/* Navigation vers l'arrière :
+   la nouvelle page arrive de gauche */
+html:active-view-transition-type(backward)::view-transition-new(root) {
+    animation-name: slide-in-from-left;
+}
+
+@keyframes slide-in-from-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0.5;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-from-left {
+    from {
+        transform: translateX(-100%);
+        opacity: 0.5;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 0.98;
+    }
+}
