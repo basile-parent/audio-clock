@@ -2,12 +2,11 @@
 
 import { useDevContext } from "@/app/context/devContext";
 import "./Actions.css"
-import { ChangeEvent, useCallback, ViewTransition } from "react";
+import { ChangeEvent, useCallback } from "react";
 import RoundButton from "@/app/design-system/RoundButton";
 import Image from "next/image"
 import RadioIcon from "@/app/assets/images/radio.png"
 import AudiobookIcon from "@/app/assets/images/audiobook.svg"
-import Link from "next/link";
 
 const Actions = () => {
     const { enabled, onChangeEnabled } = useDevContext()
@@ -34,13 +33,9 @@ const Actions = () => {
                     </RoundButton>
                 </article>
                 <article className="flex justify-center items-center">
-                    <Link href="/pages/audiobook" transitionTypes={["forward"]}>
-                        <ViewTransition name="audiobook-icon">
-                            <RoundButton className="neon-gradient flex justify-center items-center w-[100px] h-[100px]" role="presentation">
-                                <Image src={AudiobookIcon} alt="Lire un livre audio" className="drop-shadow-lg/40 block max-w-[80%] max-h-[100%] w-auto h-auto" />
-                            </RoundButton>
-                        </ViewTransition>
-                    </Link>
+                    <RoundButton className="neon-gradient flex justify-center items-center w-[100px] h-[100px]" role="presentation">
+                        <Image src={AudiobookIcon} alt="Lire un livre audio" className="drop-shadow-lg/40 block max-w-[80%] max-h-[100%] w-auto h-auto" />
+                    </RoundButton>
                 </article>
             </div>
         </div>

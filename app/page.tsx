@@ -1,4 +1,5 @@
 import Actions from "./components/Actions/Actions";
+import Audiobooks from "./components/Audiobooks/Audiobooks";
 import Clock from "./components/Clock/Clock";
 import Weather from "./components/Weather/Weather";
 
@@ -15,6 +16,10 @@ export default function Home() {
       </div>
       <section id="actions" className="h-full w-[120px]">
         <Actions />
+      </section>
+      
+      <section id="audiobooks" className="absolute">
+        <Audiobooks />
       </section>
     </main>
   );
