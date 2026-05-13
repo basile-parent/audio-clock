@@ -7,13 +7,20 @@ import RoundButton from "@/app/design-system/RoundButton";
 import Image from "next/image"
 import RadioIcon from "@/app/assets/images/radio.png"
 import AudiobookIcon from "@/app/assets/images/audiobook.svg"
+import { useAudiobookContext } from "@/app/context/audiobookContext";
 
 const Actions = () => {
     const { enabled, onChangeEnabled } = useDevContext()
+    const { dialogOpen, onChangeDialogOpen, widgetOpen, onChangeWidgetOpen } = useAudiobookContext()
 
     const changeDevMode = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         onChangeEnabled(event.target.checked)
     }, [])
+
+    const a = () => {
+        console.log("a")
+        onChangeDialogOpen(true)
+    }
 
     return (
         <div id="actions-container" className="inline-flex flex-col h-full">
@@ -33,7 +40,10 @@ const Actions = () => {
                     </RoundButton>
                 </article>
                 <article className="flex justify-center items-center">
-                    <RoundButton className="neon-gradient flex justify-center items-center w-[100px] h-[100px]" role="presentation">
+                    <RoundButton className="neon-gradient flex justify-center items-center w-[100px] h-[100px]" 
+                        aria-pressed={widgetOpen || dialogOpen} 
+                        onClick={a}
+                    >
                         <Image src={AudiobookIcon} alt="Lire un livre audio" className="drop-shadow-lg/40 block max-w-[80%] max-h-[100%] w-auto h-auto" />
                     </RoundButton>
                 </article>

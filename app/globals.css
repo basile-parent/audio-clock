@@ -82,6 +82,14 @@ body {
 	}
 }
 
+dialog {
+	background-color: var(--background-primary);
+	color: var(--text-primary);
+	box-shadow: 4px 4px 8px #777;
+	border: 2px solid var(--text-downlight);
+	border-radius: 5px;
+}
+
 /*
 	Improved screen reader only CSS class
 	@author Gaël Poupard
