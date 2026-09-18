@@ -10,6 +10,10 @@ function titleFromFilename(filename: string): string {
   return path.basename(filename, path.extname(filename));
 }
 
+function getJSONFilename(filename: string): string {
+  return path.basename(filename, path.extname(filename)) + ".json";
+}
+
 export async function listAudiobooksFromDisk(): Promise<Audiobook[]> {
   noStore();
 
@@ -25,13 +29,27 @@ export async function listAudiobooksFromDisk(): Promise<Audiobook[]> {
   );
   mp3Files.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
 
-  return mp3Files.map((filename) => ({
-    id: filename,
-    title: titleFromFilename(filename),
-    author: "",
-    duration: 0,
-    progress: 0,
-    isPlaying: false,
-    audioUrl: `/audiobooks/${encodeURIComponent(filename)}`,
+  return Promise.all(mp3Files.map(async (filename) => {
+    let json = null;
+
+    try {
+      const jsonContent = await fs.readFile(path.join(AUDIOBOOKS_DIR, getJSONFilename(filename)), "utf8");
+      json = JSON.parse(jsonContent);
+    } catch (error) {
+      console.error(`Error parsing JSON file ${filename}:`, error);
+    }
+    
+    const title = json?.title ? `${json.title}${json.author ? ` - ${json.author}` : ""}` : titleFromFilename(filename);
+    return {
+      id: filename,
+      title,
+      author: json?.author,
+      shortDescription: json?.shortDescription,
+      duration: 0,
+      progress: 0,
+      isPlaying: false,
+      audioUrl: `/audiobooks/${encodeURIComponent(filename)}`,
+    }
   }));
+
 }

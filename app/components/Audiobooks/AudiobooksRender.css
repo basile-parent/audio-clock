@@ -2,24 +2,31 @@
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
+	width: 100%;
 }
 
 .audiobook-list__item {
 	display: flex;
 	align-items: stretch;
 	gap: 0.5rem;
+	width: 100%;
+	overflow: hidden;
 }
 
 .audiobook-list__select {
 	flex: 1;
 	text-align: left;
+	display: flex;
+	flex-direction: column;
 	padding: 0.5rem 0.75rem;
+	min-height: 4rem;
 	border-radius: 0.375rem;
 	border: 1px solid var(--text-downlight);
 	background: transparent;
 	color: inherit;
 	cursor: pointer;
 	transition: background-color 0.15s ease, border-color 0.15s ease;
+	overflow: hidden;
 }
 
 .audiobook-list__select:hover {
@@ -32,14 +39,19 @@
 	background: color-mix(in srgb, var(--rain-background) 18%, transparent);
 }
 
-.audiobook-list__title {
+.audiobook-list__info {
 	font-weight: 500;
+	display: inline-block;
+	max-width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.audiobook-list__author {
-	display: block;
+.audiobook-list__description {
 	font-size: 0.875rem;
 	color: var(--text-downlight);
+	transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .audiobook-list__stop {

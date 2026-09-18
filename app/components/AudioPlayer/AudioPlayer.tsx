@@ -40,8 +40,10 @@ const AudioPlayer = () => {
   } = useAudioPlayer();
 
   if (!current) {
-    return null;
+    return <></>;
   }
+
+  console.log("current", current);
 
   const canSeek = duration > 0;
   const progressValue = canSeek ? Math.min(currentTime, duration) : 0;
@@ -52,76 +54,70 @@ const AudioPlayer = () => {
   };
 
   return (
-    <div
-      id="audio-player"
-      role="region"
-      aria-label="Lecteur audio"
-      className="audio-player"
-    >
-      <div className="audio-player__main">
-        <div className="audio-player__row">
-          <div className="audio-player__info">
-            <span className="audio-player__kind">
-              {SOURCE_LABEL[current.kind] ?? SOURCE_LABEL.other}
-            </span>
-            <p className="audio-player__title" title={current.title}>
-              {current.title}
-            </p>
-          </div>
-
-          <div className="audio-player__controls">
-            <button
-              type="button"
-              className="audio-player__btn"
-              aria-label={isPlaying ? "Pause" : "Lecture"}
-              onClick={() => (isPlaying ? pause() : resume())}
-            >
-              {isPlaying ? (
-                <span aria-hidden className="audio-player__icon-pause" />
-              ) : (
-                <span aria-hidden className="audio-player__icon-play" />
-              )}
-            </button>
-            <button
-              type="button"
-              className="audio-player__btn"
-              aria-label="Stop"
-              onClick={stop}
-            >
-              <span aria-hidden className="audio-player__icon-stop" />
-            </button>
-          </div>
+    <div className="audio-player__main">
+      <div className="audio-player__row">
+        <div className="audio-player__info">
+          <span className="audio-player__kind">
+            {SOURCE_LABEL[current.kind] ?? SOURCE_LABEL.other}
+          </span>
+          <p className="audio-player__title" title={current.title}>
+            {current.title}
+            <span className="audio-player__author">{current.author}</span>
+          </p>
         </div>
 
-        <div className="audio-player__progress">
-          <label htmlFor={progressId} className="sr-only">
-            Progression
-          </label>
-          <input
-            id={progressId}
-            type="range"
-            className="audio-player__slider"
-            min={0}
-            max={canSeek ? duration : 1}
-            step={0.1}
-            value={progressValue}
-            disabled={!canSeek}
-            aria-valuetext={
-              canSeek
-                ? `${formatTime(progressValue)} sur ${formatTime(duration)}`
-                : "Durée indisponible"
-            }
-            style={
-              {
-                "--progress": `${progressPercent}%`,
-              } as CSSProperties
-            }
-            onChange={onSeek}
-          />
-          <div className="audio-player__times" aria-hidden={!canSeek}>
-            <span>{formatTime(progressValue)}</span>
-            <span>{canSeek ? formatTime(duration) : "—"}</span>
-          </div>
+        <div className="audio-player__controls">
+          <button
+            type="button"
+            className="audio-player__btn"
+            aria-label={isPlaying ? "Pause" : "Lecture"}
+            onClick={() => (isPlaying ? pause() : resume())}
+          >
+            {isPlaying ? (
+              <span aria-hidden className="audio-player__icon-pause" />
+            ) : (
+              <span aria-hidden className="audio-player__icon-play" />
+            )}
+          </button>
+          <button
+            type="button"
+            className="audio-player__btn"
+            aria-label="Stop"
+            onClick={stop}
+          >
+            <span aria-hidden className="audio-player__icon-stop" />
+          </button>
+        </div>
+      </div>
+
+      <div className="audio-player__progress">
+        <label htmlFor={progressId} className="sr-only">
+          Progression
+        </label>
+        <input
+          id={progressId}
+          type="range"
+          className="audio-player__slider"
+          min={0}
+          max={canSeek ? duration : 1}
+          step={0.1}
+          value={progressValue}
+          disabled={!canSeek}
+          aria-valuetext={
+            canSeek
+              ? `${formatTime(progressValue)} sur ${formatTime(duration)}`
+              : "Durée indisponible"
+          }
+          style={
+            {
+              "--progress": `${progressPercent}%`,
+            } as CSSProperties
+          }
+          onChange={onSeek}
+        />
+        <div className="audio-player__times" aria-hidden={!canSeek}>
+          <span>{formatTime(progressValue)}</span>
+          <span>{canSeek ? formatTime(duration) : "—"}</span>
         </div>
       </div>
     </div>

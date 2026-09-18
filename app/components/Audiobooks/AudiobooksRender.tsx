@@ -70,10 +70,19 @@ const AudiobooksRender = ({ audiobooks }: AudiobookRenderProps) => {
                                             })
                                         }
                                     >
-                                        <span className="audiobook-list__title">{book.title}</span>
-                                        {book.author ? (
-                                            <span className="audiobook-list__author">
-                                                {book.author}
+                                        <div className="audiobook-list__info">
+                                            <span className="audiobook-list__title">
+                                                {book.title}
+                                            </span>
+                                            {book.author &&
+                                                <span className="audiobook-list__author">
+                                                    &nbsp;- {book.author}
+                                                </span>
+                                            }
+                                        </div>
+                                        {book.shortDescription ? (
+                                            <span className="audiobook-list__description">
+                                                {book.shortDescription}
                                             </span>
                                         ) : null}
                                     </button>

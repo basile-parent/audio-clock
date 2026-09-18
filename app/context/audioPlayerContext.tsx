@@ -185,7 +185,6 @@ export const AudioPlayerContextProvider = ({ children }: PropsWithChildren) => {
 };
 
 const AudioNativePlayer = React.memo(forwardRef<HTMLAudioElement, object>((_, ref) => {
-  console.log("AudioNativePlayer");
   return <audio ref={ref} preload="none" className="sr-only" aria-hidden />;
 }));
 AudioNativePlayer.displayName = "AudioNativePlayer";
