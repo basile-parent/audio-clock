@@ -1,0 +1,67 @@
+.audiobook-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.audiobook-list__item {
+	display: flex;
+	align-items: stretch;
+	gap: 0.5rem;
+}
+
+.audiobook-list__select {
+	flex: 1;
+	text-align: left;
+	padding: 0.5rem 0.75rem;
+	border-radius: 0.375rem;
+	border: 1px solid var(--text-downlight);
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+	transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.audiobook-list__select:hover {
+	background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+}
+
+.audiobook-list__select.is-selected,
+.audiobook-list__select[aria-selected="true"] {
+	border-color: var(--rain-background);
+	background: color-mix(in srgb, var(--rain-background) 18%, transparent);
+}
+
+.audiobook-list__title {
+	font-weight: 500;
+}
+
+.audiobook-list__author {
+	display: block;
+	font-size: 0.875rem;
+	color: var(--text-downlight);
+}
+
+.audiobook-list__stop {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;
+	flex-shrink: 0;
+	border-radius: 0.375rem;
+	border: 1px solid var(--text-downlight);
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+}
+
+.audiobook-list__stop:hover {
+	background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+}
+
+.audiobook-list__stop-icon {
+	display: block;
+	width: 0.75rem;
+	height: 0.75rem;
+	background: currentColor;
+}

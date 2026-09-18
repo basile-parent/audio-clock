@@ -1,14 +1,10 @@
 import AudiobooksRender from "./AudiobooksRender";
-import { Audiobook } from "./types";
+import { listAudiobooksFromDisk } from "@/app/lib/audiobooks/listAudiobooks";
 
-const Audiobooks = () => {
-    const audiobooks: Audiobook[] = []
+const Audiobooks = async () => {
+  const audiobooks = await listAudiobooksFromDisk();
 
-    return (
-        <>
-            <AudiobooksRender audiobooks={audiobooks} />
-        </>
-    )
-}
+  return <AudiobooksRender audiobooks={audiobooks} />;
+};
 
 export default Audiobooks;

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, PropsWithChildren, useState, useContext, useEffect } from "react";
+import { createContext, PropsWithChildren, useState, useContext } from "react";
 
 export type AudiobookContext = {
     widgetOpen: boolean

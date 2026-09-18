@@ -15,12 +15,11 @@ const Actions = () => {
 
     const changeDevMode = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         onChangeEnabled(event.target.checked)
-    }, [])
+    }, [onChangeEnabled])
 
-    const a = () => {
-        console.log("a")
+    const openAudiobookDialog = useCallback(() => {
         onChangeDialogOpen(true)
-    }
+    }, [onChangeDialogOpen])
 
     return (
         <div id="actions-container" className="inline-flex flex-col h-full">
@@ -42,7 +41,7 @@ const Actions = () => {
                 <article className="flex justify-center items-center">
                     <RoundButton className="neon-gradient flex justify-center items-center w-[100px] h-[100px]" 
                         aria-pressed={widgetOpen || dialogOpen} 
-                        onClick={a}
+                        onClick={openAudiobookDialog}
                     >
                         <Image src={AudiobookIcon} alt="Lire un livre audio" className="drop-shadow-lg/40 block max-w-[80%] max-h-[100%] w-auto h-auto" />
                     </RoundButton>
