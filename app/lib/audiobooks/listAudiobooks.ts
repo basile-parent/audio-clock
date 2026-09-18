@@ -39,11 +39,12 @@ export async function listAudiobooksFromDisk(): Promise<Audiobook[]> {
       console.error(`Error parsing JSON file ${filename}:`, error);
     }
     
-    const title = json?.title ? `${json.title}${json.author ? ` - ${json.author}` : ""}` : titleFromFilename(filename);
+    const displayTitle = json?.title ? `${json.title}${json.author ? ` - ${json.author}` : ""}` : titleFromFilename(filename);
     return {
       id: filename,
-      title,
+      title: json?.title ?? titleFromFilename(filename),
       author: json?.author,
+      displayTitle,
       shortDescription: json?.shortDescription,
       duration: 0,
       progress: 0,

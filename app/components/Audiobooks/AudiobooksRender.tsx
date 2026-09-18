@@ -43,7 +43,6 @@ const AudiobooksRender = ({ audiobooks }: AudiobookRenderProps) => {
                     </p>
                 ) : (
                     <ul
-                        role="listbox"
                         aria-label="Liste des audiobooks"
                         className="audiobook-list"
                     >
@@ -53,52 +52,52 @@ const AudiobooksRender = ({ audiobooks }: AudiobookRenderProps) => {
                             return (
                                 <li
                                     key={book.id}
-                                    role="presentation"
-                                    className="audiobook-list__item"
+                                    className={`audiobook-list__item${isSelected ? " is-selected" : ""}`}
+                                    aria-current={isSelected ? "true" : undefined}
                                 >
-                                    <button
-                                        type="button"
-                                        role="option"
-                                        aria-selected={isSelected}
-                                        className={`audiobook-list__select${isSelected ? " is-selected" : ""}`}
-                                        onClick={() =>
-                                            play({
-                                                id: book.id,
-                                                title: book.title,
-                                                url: book.audioUrl,
-                                                kind: "audiobook",
-                                            })
-                                        }
-                                    >
+                                    <div className="audiobook-list__content">
                                         <div className="audiobook-list__info">
                                             <span className="audiobook-list__title">
                                                 {book.title}
                                             </span>
-                                            {book.author &&
+                                            {book.author ? (
                                                 <span className="audiobook-list__author">
                                                     &nbsp;- {book.author}
                                                 </span>
-                                            }
+                                            ) : null}
                                         </div>
                                         {book.shortDescription ? (
                                             <span className="audiobook-list__description">
                                                 {book.shortDescription}
                                             </span>
                                         ) : null}
-                                    </button>
+                                    </div>
                                     {isSelected ? (
                                         <button
                                             type="button"
-                                            className="audiobook-list__stop"
-                                            aria-label={`Stop ${book.title}`}
+                                            className="audiobook-list__action"
                                             onClick={stop}
                                         >
-                                            <span
-                                                aria-hidden
-                                                className="audiobook-list__stop-icon"
-                                            />
+                                            <span className="sr-only">Arrêter {book.title}</span>
+                                            <span aria-hidden className="audiobook-list__icon-stop" />
                                         </button>
-                                    ) : null}
+                                    ) : (
+                                        <button
+                                            type="button"
+                                            className="audiobook-list__action"
+                                            onClick={() =>
+                                                play({
+                                                    id: book.id,
+                                                    title: book.displayTitle,
+                                                    url: book.audioUrl,
+                                                    kind: "audiobook",
+                                                })
+                                            }
+                                        >
+                                            <span className="sr-only">Lire {book.title}</span>
+                                            <span aria-hidden className="audiobook-list__icon-play" />
+                                        </button>
+                                    )}
                                 </li>
                             );
                         })}

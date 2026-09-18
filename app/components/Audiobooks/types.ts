@@ -2,6 +2,7 @@ export type Audiobook = {
   id: string;
   title: string;
   author: string;
+  displayTitle: string;
   shortDescription: string;
   duration: number;
   progress: number;
